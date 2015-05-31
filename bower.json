@@ -7,7 +7,21 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "angular": "~1.3.15",
+    "angular": "~1.4.0",
+    "angular-mocks": "~1.4.0",
     "lodash": "~3.9.0"
-  }
+  },
+  "main": "dist/lazyGoogleMaps.min.js",
+  "ignore": [
+    ".bowerrc",
+    ".eslintignore",
+    ".eslintrc",
+    ".gitignore",
+    ".jscsrc",
+    "devServer",
+    "gulpfile.js",
+    "karma.conf.js",
+    "package.json",
+    "server.js"
+  ]
 }
