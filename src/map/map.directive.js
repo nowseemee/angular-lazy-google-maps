@@ -79,6 +79,21 @@
                 renderPlaceSearch();
                 addClickListener();
 
+                watchLatLng = scope.$watchGroup(['lat', 'lng'], function (coordinates) {
+                    var watchAddress;
+                    if(coordinates[0] && coordinates[0]) {
+                        placeMarkerByLatLng();
+                        return watchLatLng();
+                    }
+
+                    watchAddress = scope.$watchGroup(['city', 'country', 'place'], function (address) {
+                        if (address[0] || address[1] || address[2]) {
+                            watchLatLng();
+                            placeMarkerByAddress();
+                            return watchAddress();
+                        }
+                    });
+                });
             }
 
             function placeMarkerByLatLng() {
