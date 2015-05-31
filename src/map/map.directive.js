@@ -28,6 +28,7 @@
             var renderedMap;
             var marker;
             var infowindow;
+            var searchInput;
 
             if (maps) {
                 return renderMap();
@@ -118,7 +119,7 @@
 
 
             function renderPlaceSearch() {
-                var searchInput = (document.getElementById('lazy-google-maps-search-' + scope.$id));
+                searchInput = (document.getElementById('lazy-google-maps-search-' + scope.$id));
                 var searchBox = new google.maps.places.SearchBox((searchInput));
 
                 renderedMap.controls[maps.ControlPosition.TOP_LEFT].push(searchInput);
@@ -170,6 +171,8 @@
                 scope.place = place.formatted_address;
                 scope.lat = place.geometry.location.A || place.geometry.location.lat;
                 scope.lng = place.geometry.location.F || place.geometry.location.lng;
+
+                searchInput.value = scope.place;
 
                 processAddressComponents(place);
 
