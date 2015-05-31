@@ -2,11 +2,10 @@
     'use strict';
 
     angular
-        .module('lazyGoogleMaps', [])
-        .directive('lazyGoogleMaps', lazyGoogleMapsFn)
-        .factory('lazyGoogleMapsUtils', lazyGoogleMapsUtilsFn);
+        .module('lazyGoogleMaps')
+        .directive('lazyGoogleMaps', lazyGoogleMaps);
 
-    function lazyGoogleMapsFn($window, $q, $rootScope, lazyGoogleMapsUtils) {
+    function lazyGoogleMaps ($window, $q, $rootScope, lazyGoogleMapsUtils) {
         var _ = $window._;
         var directive = {
             restrict: 'E',
@@ -68,6 +67,7 @@
 
             function renderMap() {
                 var mapOptions;
+                var watchLatLng;
                 maps = google.maps;
                 mapOptions = {
                     zoom: 8,
@@ -79,6 +79,27 @@
 
                 renderPlaceSearch();
                 addClickListener();
+
+            }
+
+            function placeMarkerByLatLng() {
+                var latLng = scope.lat + ',' + scope.lng;
+
+                lazyGoogleMapsUtils.reverseGeocode(latLng).then(function (place) {
+                    if(place) {
+                        processPlace(place);
+                    }
+                });
+            }
+
+            function placeMarkerByAddress() {
+                var address = (scope.city || '') + ' ' + (scope.country || '') + ' ' + (scope.place || '');
+
+                lazyGoogleMapsUtils.geocode(address).then(function (place) {
+                    if(place) {
+                        processPlace(place);
+                    }
+                });
             }
 
 
@@ -116,6 +137,7 @@
 
 
             function processPlace(place) {
+
                 var bounds = new maps.LatLngBounds();
                 var infoWindowContent;
 
@@ -169,22 +191,6 @@
                 scope.country = country[0] ? country[0].long_name : scope.place;
                 scope.city = city[0] ? city[0].long_name : scope.country;
             }
-        }
-    }
-    function lazyGoogleMapsUtilsFn($http) {
-        var service = {
-            isLoading: false,
-            reverseGeocode: reverseGeocode
-        };
-
-        return service;
-
-
-        function reverseGeocode(latLng) {
-            var googleGeocodeServiceURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
-            return $http.get(googleGeocodeServiceURL + latLng).then(function (response) {
-                return response.data.results[0];
-            });
         }
     }
 })();

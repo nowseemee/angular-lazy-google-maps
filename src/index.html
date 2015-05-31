@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <!-- bower:css -->
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body ng-app="lazyGoogleMaps">
+    <div class="content">
+        <lazy-google-maps
+                lat="location.lat"
+                lng="location.lng"
+                country="location.country"
+                city="location.city"
+                place="location.place"
+                ng-init="location = {lat: -33.868001, lng: 151.195248, country: 'Australia', city: 'Sydney', place: 'The Star'}">
+        </lazy-google-maps>
+    </div>
+<!-- bower:js -->
+<!-- endinject -->
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>
