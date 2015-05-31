@@ -1,7 +1,7 @@
-# angular-lazy-google-maps
+# angular-lazy-google-maps [![Build Status](https://travis-ci.org/nowseemee/angular-lazy-google-maps.svg?branch=master)](https://travis-ci.org/nowseemee/angular-lazy-google-maps)
 google maps directive with lazy loading for AngularJs
 
-[![Build Status](https://travis-ci.org/nowseemee/angular-lazy-google-maps.svg?branch=master)](https://travis-ci.org/nowseemee/angular-lazy-google-maps)
+* [demo](http://jsfiddle.net/dm0dpdbq/2/)
 
 ## How to use it
 You must include the dependency on your angular module:
