@@ -14,9 +14,6 @@ app.use(bodyParser.json()); // parse application/json
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/' + staticdir)); // set the static files location /public/img will be /img for users
 
-// routes ==================================================
-require('./devServer/routes')(app); // configure our routes
-
 // start app ===============================================
 app.listen(port);                   // startup our app at http://localhost:8080
 console.log('Starting sever on port ' + port);       // shoutout to the user

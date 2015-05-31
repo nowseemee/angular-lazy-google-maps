@@ -271,7 +271,7 @@ gulp.task('clean-build-app-dist', ['clean-dist'], pipes.builtAppdist);
 gulp.task('watch-dev', ['clean-build-app-dev', 'validate-devserver-scripts'], function() {
 
     // start nodemon to auto-reload the dev server
-    plugins.nodemon({ script: 'server.js', ext: 'js', watch: ['devServer/'], env: {NODE_ENV: 'development'} })
+    plugins.nodemon({ script: 'server.js', ext: 'js', env: {NODE_ENV: 'development'} })
         .on('change', ['validate-devserver-scripts'])
         .on('restart', function () {
             console.log('[nodemon] restarted dev server');
