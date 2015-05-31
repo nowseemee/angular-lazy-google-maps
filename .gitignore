@@ -1,0 +1,8 @@
+.idea
+.gulpfile.js
+node_modules
+bower_components
+dev
+test_out
+vendor.*
+dist/*.html
