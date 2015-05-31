@@ -52,7 +52,7 @@
     "q": "^1.4.1"
   },
   "scripts": {
-    "test": "npm test"
+    "test": "gulp test-app-scripts"
   },
   "repository": {
     "type": "git",
