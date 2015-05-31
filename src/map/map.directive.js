@@ -126,7 +126,9 @@
                     var latLng = target.latLng.A + ',' + target.latLng.F;
 
                     lazyGoogleMapsUtils.reverseGeocode(latLng).then(function (place) {
-                        processPlace(place);
+                        if(place) {
+                            processPlace(place);
+                        }
                     });
                 });
             }
