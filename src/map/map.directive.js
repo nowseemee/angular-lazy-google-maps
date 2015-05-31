@@ -70,8 +70,7 @@
                 var watchLatLng;
                 maps = google.maps;
                 mapOptions = {
-                    zoom: 8,
-                    center: new maps.LatLng(scope.lat, scope.lng)
+                    zoom: 8
                 };
                 renderedMap = new maps.Map(document.getElementById('lazy-google-maps-canvas-' + scope.$id), mapOptions);
                 marker = new maps.Marker({ map: renderedMap });
