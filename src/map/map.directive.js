@@ -119,8 +119,8 @@
 
 
             function renderPlaceSearch() {
-                searchInput = (document.getElementById('lazy-google-maps-search-' + scope.$id));
                 var searchBox = new google.maps.places.SearchBox((searchInput));
+                searchInput = (document.getElementById('lazy-google-maps-search-' + scope.$id));
 
                 renderedMap.controls[maps.ControlPosition.TOP_LEFT].push(searchInput);
 
