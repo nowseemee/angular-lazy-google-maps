@@ -150,7 +150,7 @@
                     renderedMap.fitBounds(bounds);
                 }
 
-                renderedMap.setCenter(place.geometry.location);
+                renderedMap.panTo(place.geometry.location);
 
                 scope.place = place.formatted_address;
                 scope.lat = place.geometry.location.A || place.geometry.location.lat;
