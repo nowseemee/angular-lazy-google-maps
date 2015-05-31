@@ -17,7 +17,7 @@
                 place: '=?'
             },
             replace: true,
-            templateUrl: 'lazyGoogleMaps.html',
+            templateUrl: 'map/map.html',
             link: link
         };
         return directive;
