@@ -111,8 +111,6 @@
                 maps.event.addListener(searchBox, 'places_changed', function() {
                     var place = searchBox.getPlaces()[0];
 
-                    console.log(place);
-
                     if (!place) {
                         return;
                     }
@@ -128,7 +126,6 @@
                     var latLng = target.latLng.A + ',' + target.latLng.F;
 
                     lazyGoogleMapsUtils.reverseGeocode(latLng).then(function (place) {
-                        console.log(place);
                         processPlace(place);
                     });
                 });
