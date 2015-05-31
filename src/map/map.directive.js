@@ -71,7 +71,8 @@
                 var watchLatLng;
                 maps = google.maps;
                 mapOptions = {
-                    zoom: 8
+                    zoom: 8,
+                    center: new google.maps.LatLng(-33.868001, 151.195248)
                 };
                 renderedMap = new maps.Map(document.getElementById('lazy-google-maps-canvas-' + scope.$id), mapOptions);
                 marker = new maps.Marker({ map: renderedMap });
@@ -119,8 +120,9 @@
 
 
             function renderPlaceSearch() {
-                var searchBox = new google.maps.places.SearchBox((searchInput));
+                var searchBox;
                 searchInput = (document.getElementById('lazy-google-maps-search-' + scope.$id));
+                searchBox = new google.maps.places.SearchBox((searchInput));
 
                 renderedMap.controls[maps.ControlPosition.TOP_LEFT].push(searchInput);
 
