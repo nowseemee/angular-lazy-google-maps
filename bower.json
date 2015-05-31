@@ -1,6 +1,6 @@
 {
   "name": "angular-lazy-google-maps",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "google maps directive with lazy loading for AngularJs",
   "authors": [
     "Daniel Beck <nowseemee@gmail.com>"
