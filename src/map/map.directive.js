@@ -227,7 +227,7 @@
                 scope.lat = place.geometry.location.A || place.geometry.location.lat;
                 scope.lng = place.geometry.location.F || place.geometry.location.lng;
 
-                searchInput.value = scope.place;
+                searchInputElement.value = scope.place;
 
                 processAddressComponents(place);
 
