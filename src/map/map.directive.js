@@ -19,6 +19,7 @@
                 freezeButton: '=?',
                 freezed: '=?',
                 isLoading: '@',
+                markers: '=?'
             },
             replace: true,
             templateUrl: 'map/map.html',
@@ -33,6 +34,8 @@
             var marker;
             var infowindow;
             var searchInputElement;
+            var markerClusterer;
+
             scope.isLoading = true;
 
             scope.toggleFreezed = function () {
@@ -203,8 +206,6 @@
                 var bounds = new maps.LatLngBounds();
                 var infoWindowContent;
 
-                setMarker(place);
-
                 infowindow.close();
 
                 if (_.has(place, 'geometry.viewport.Da')) {
@@ -215,6 +216,12 @@
                 }
 
                 renderedMap.panTo(place.geometry.location);
+
+                if (scope.markers) {
+                    return setMarkerCluster();
+                }
+
+                setMarker(place);
 
                 scope.place = place.formatted_address;
                 scope.lat = place.geometry.location.A || place.geometry.location.lat;
@@ -261,6 +268,48 @@
                 maps.event.clearListeners(renderedMap, 'click');
             }
 
+
+            function setMarkerCluster() {
+
+                var markerBounds = new google.maps.LatLngBounds();
+                var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+                var markerImage = new google.maps.MarkerImage(imageUrl, new google.maps.Size(24, 32));
+
+
+                var markers = _.map(scope.markers, function (position) {
+                    var latLng = new google.maps.LatLng(position.lat, position.lng);
+
+                    var googleMarker = new google.maps.Marker({
+                        position: latLng,
+                        icon: markerImage,
+                        title: 'Click to zoom'
+                    });
+
+                    maps.event.addListener(googleMarker, 'click', function() {
+                        renderedMap.setZoom(17);
+                        renderedMap.setCenter(googleMarker.getPosition());
+                        console.log(googleMarker);
+                    });
+
+                    markerBounds.extend(latLng);
+                    return googleMarker;
+                });
+
+                var mcOptions = {
+                    gridSize: 90,
+                    maxZoom: 15,
+                    styles: [{
+                        url: imageUrl,
+                        height: 35,
+                        width: 35,
+                        anchor: [16, 0],
+                        textColor: '#ff00ff',
+                        textSize: 10
+                    }]
+                };
+                markerClusterer = new MarkerClusterer(renderedMap, markers, mcOptions);
+                renderedMap.fitBounds(markerBounds);
+            }
         }
     }
 })();
