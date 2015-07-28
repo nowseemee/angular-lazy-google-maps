@@ -237,17 +237,7 @@
 
 
             function setMarker(place) {
-                var markerImage = {
-                    url: place.icon,
-                    size: new maps.Size(71, 71),
-                    origin: new maps.Point(0, 0),
-                    anchor: new maps.Point(17, 34),
-                    scaledSize: new maps.Size(35, 35)
-                };
                 var position = place.geometry.location;
-                if (place.icon) {
-                    marker.setIcon((markerImage));
-                }
                 marker.setPosition(position);
                 marker.setVisible(true);
             }
