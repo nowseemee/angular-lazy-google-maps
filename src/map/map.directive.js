@@ -107,7 +107,10 @@
                 maps = google.maps;
                 mapOptions = {
                     zoom: 8,
-                    center: new google.maps.LatLng(-33.868001, 151.195248)
+                    center: new google.maps.LatLng(-33.868001, 151.195248),
+                    panControlOptions: { position: maps.ControlPosition.LEFT_CENTER },
+                    zoomControlOptions: { position: maps.ControlPosition.LEFT_CENTER },
+                    streetViewControlOptions: { position: maps.ControlPosition.LEFT_CENTER }
                 };
                 renderedMap = new maps.Map(document.getElementById('lazy-google-maps-canvas-' + scope.$id), mapOptions);
                 marker = new maps.Marker({ map: renderedMap });
