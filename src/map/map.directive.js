@@ -16,6 +16,8 @@
                 city: '=?',
                 place: '=?',
                 customSearchElementId: '=?',
+                freezeButton: '=?',
+                freezed: '=?',
             },
             replace: true,
             templateUrl: 'map/map.html',
@@ -30,6 +32,31 @@
             var marker;
             var infowindow;
             var searchInputElement;
+            scope.toggleFreezed = function () {
+                scope.freezed = !scope.freezed;
+                if (scope.freezed) { return freeze(); }
+                unFreeze();
+            };
+
+
+            function freeze() {
+                removeClickListener();
+                renderedMap.setOptions({
+                    disableDoubleClickZoom: false,
+                    draggable: false,
+                    scrollwheel: false
+                });
+            }
+
+            function unFreeze() {
+                addClickListener();
+                renderedMap.setOptions({
+                    disableDoubleClickZoom: true,
+                    draggable: true,
+                    scrollwheel: true
+                });
+            }
+
 
             if (maps) {
                 return renderMap();
@@ -97,6 +124,10 @@
                         }
                     });
                 });
+
+                if (scope.freezed) {
+                    freeze();
+                }
             }
 
             function placeMarkerByLatLng() {
@@ -218,6 +249,12 @@
                 scope.country = country[0] ? country[0].long_name : scope.place;
                 scope.city = city[0] ? city[0].long_name : scope.country;
             }
+
+
+            function removeClickListener() {
+                maps.event.clearListeners(renderedMap, 'click');
+            }
+
         }
     }
 })();
