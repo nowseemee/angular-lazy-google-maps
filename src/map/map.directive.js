@@ -18,6 +18,7 @@
                 customSearchElementId: '=?',
                 freezeButton: '=?',
                 freezed: '=?',
+                isLoading: '@',
             },
             replace: true,
             templateUrl: 'map/map.html',
@@ -32,6 +33,8 @@
             var marker;
             var infowindow;
             var searchInputElement;
+            scope.isLoading = true;
+
             scope.toggleFreezed = function () {
                 scope.freezed = !scope.freezed;
                 if (scope.freezed) { return freeze(); }
@@ -61,6 +64,7 @@
             if (maps) {
                 return renderMap();
             }
+
 
             injectMap().then(function () {
                 $rootScope.$broadcast('lazyGoogleMaps:loaded');
@@ -124,6 +128,8 @@
                         }
                     });
                 });
+
+                scope.isLoading = false;
 
                 if (scope.freezed) {
                     freeze();
