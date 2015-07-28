@@ -1,5 +1,8 @@
 <div class="lazy-google-maps">
-    <input id="lazy-google-maps-search-{{$id}}" class="lazy-google-maps-search" type="text" placeholder="Search for a place...">
-    <div id="lazy-google-maps-canvas-{{$id}}" class="lazy-google-maps-canvas">
-    </div>
+    <input id="lazy-google-maps-search-{{$id}}" ng-hide="customSearchElementId" class="lazy-google-maps-search" type="text" placeholder="Search for a place...">
+    <button ng-if="freezeButton" ng-disabled="isLoading" ng-class="{ 'freezed': freezed }" ng-click="toggleFreezed()" id="button-{{ $id }}" class="random-button-element">
+        <span ng-if="!freezed">Freeze</span>
+        <span ng-if="freezed">Unfreeze</span>
+    </button>
+    <div id="lazy-google-maps-canvas-{{$id}}" class="lazy-google-maps-canvas"></div>
 </div>
