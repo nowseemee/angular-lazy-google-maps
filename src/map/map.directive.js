@@ -14,7 +14,8 @@
                 lng: '=?',
                 country: '=?',
                 city: '=?',
-                place: '=?'
+                place: '=?',
+                customSearchElementId: '=?',
             },
             replace: true,
             templateUrl: 'map/map.html',
@@ -28,7 +29,7 @@
             var renderedMap;
             var marker;
             var infowindow;
-            var searchInput;
+            var searchInputElement;
 
             if (maps) {
                 return renderMap();
@@ -121,10 +122,12 @@
 
             function renderPlaceSearch() {
                 var searchBox;
-                searchInput = (document.getElementById('lazy-google-maps-search-' + scope.$id));
-                searchBox = new google.maps.places.SearchBox((searchInput));
+                searchInputElement = getSearchInput();
+                searchBox = new google.maps.places.SearchBox((searchInputElement));
 
-                renderedMap.controls[maps.ControlPosition.TOP_LEFT].push(searchInput);
+                if (!scope.customSearchElementId) {
+                    renderedMap.controls[maps.ControlPosition.TOP_LEFT].push(searchInputElement);
+                }
 
                 maps.event.addListener(searchBox, 'places_changed', function() {
                     var place = searchBox.getPlaces()[0];
@@ -136,6 +139,12 @@
                     processPlace(place);
                 });
 
+                function getSearchInput() {
+                    if (scope.customSearchElementId) {
+                        return document.getElementById(scope.customSearchElementId);
+                    }
+                    return document.getElementById('lazy-google-maps-search-' + scope.$id);
+                }
             }
 
 
