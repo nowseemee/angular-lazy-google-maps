@@ -205,17 +205,12 @@
 
 
             function processPlace(place) {
-
-                var bounds = new maps.LatLngBounds();
                 var infoWindowContent;
 
                 infowindow.close();
 
                 if (_.has(place, 'geometry.viewport.Da')) {
                     renderedMap.fitBounds(place.geometry.viewport);
-                } else if (_.has(place, 'geometry.location.A')) {
-                    bounds.extend(place.geometry.location);
-                    renderedMap.fitBounds(bounds);
                 }
 
                 renderedMap.panTo(place.geometry.location);
