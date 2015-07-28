@@ -34,7 +34,6 @@
             var marker;
             var infowindow;
             var searchInputElement;
-            var markerClusterer;
 
             scope.isLoading = true;
 
@@ -295,7 +294,7 @@
                         textSize: 10
                     }]
                 };
-                markerClusterer = new MarkerClusterer(renderedMap, markers, mcOptions);
+                var markerClusterer = new MarkerClusterer(renderedMap, markers, mcOptions);
                 renderedMap.fitBounds(markerBounds);
             }
         }
