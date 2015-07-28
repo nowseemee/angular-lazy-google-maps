@@ -6,23 +6,40 @@
     <!-- endinject -->
 
     <!-- inject:css -->
+    <link rel="stylesheet" href="lazyGoogleMaps.css">
     <!-- endinject -->
 </head>
 <body ng-app="lazyGoogleMaps">
-    <div class="content">
-        <lazy-google-maps
-                lat="location.lat"
-                lng="location.lng"
-                country="location.country"
-                city="location.city"
-                place="location.place"
-                ng-init="location = {lat: -33.868001, lng: 151.195248, country: 'Australia', city: 'Sydney', place: 'The Star'}">
-        </lazy-google-maps>
-    </div>
+<input id="search-{{ $id }}" class="random-search-element" type="text" placeholder="Search for a place...">
+
+<div class="content">
+    <lazy-google-maps
+            lat="location.lat"
+            lng="location.lng"
+            country="location.country"
+            city="location.city"
+            place="location.place"
+            ng-init="location = {lat: -33.868001, lng: 151.195248, country: 'Australia', city: 'Sydney', place: 'The Star'}"
+            custom-search-element-id="'search-' + $id"
+            freeze-button="true"
+            freezed="true"
+            markers="[{lat:48.1544706,lng:11.6282919},{lat:48.1644706,lng:11.6382919}]"
+            >
+    </lazy-google-maps>
+
+
+</div>
 <!-- bower:js -->
+<script src="bower_components/angular.js"></script>
+<script src="bower_components/lodash.js"></script>
+<script src="bower_components/angular-mocks.js"></script>
+<script src="bower_components/markerclusterer.js"></script>
 <!-- endinject -->
 
 <!-- inject:js -->
+<script src="app.js"></script>
+<script src="map/map.service.js"></script>
+<script src="map/map.directive.js"></script>
 <!-- endinject -->
 </body>
 </html>
