@@ -119,6 +119,17 @@
                 renderPlaceSearch();
                 addClickListener();
 
+
+                scope.isLoading = false;
+
+                if (scope.freezed) {
+                    freeze();
+                }
+
+                if (scope.markers) {
+                    return setMarkerCluster();
+                }
+
                 watchLatLng = scope.$watchGroup(['lat', 'lng'], function (coordinates) {
                     var watchAddress;
                     if(coordinates[0] && coordinates[0]) {
@@ -135,11 +146,6 @@
                     });
                 });
 
-                scope.isLoading = false;
-
-                if (scope.freezed) {
-                    freeze();
-                }
             }
 
             function placeMarkerByLatLng() {
@@ -216,7 +222,7 @@
                 renderedMap.panTo(place.geometry.location);
 
                 if (scope.markers) {
-                    return setMarkerCluster();
+                    return;
                 }
 
                 setMarker(place);
